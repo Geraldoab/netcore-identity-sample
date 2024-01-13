@@ -27,6 +27,6 @@ Password: my_database_password
 Default Schema: myuserapi
 ```
 
-My DockerHub
+## My DockerHub
 
 https://hub.docker.com/repositories/geraldoab
