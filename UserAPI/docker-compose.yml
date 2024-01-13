@@ -1,0 +1,42 @@
+version: '3.5'
+services:
+  userIdentityDatabase:
+    image: mysql:8.0
+    container_name: identityMySqlDatabase
+    cap_add:
+      - SYS_NICE
+    restart: always
+    ports:
+      - 7000:3306
+    environment:
+      MYSQL_ROOT_PASSWORD: my_root_password
+      MYSQL_USER: my_database_username
+      MYSQL_PASSWORD: my_database_password
+      MYSQL_DATABASE: myuserapi
+    volumes:
+      - db_data:/var/lib/mysql  
+    networks:
+      - identity-networks
+
+  identityApi:
+    image: geraldoab/netcore-identity-sample:1.0
+    container_name: identityApi  
+    networks:
+      - identity-networks
+    depends_on:
+      - userIdentityDatabase
+    environment:
+      ASPNETCORE_ENVIRONMENT: Development
+      SYMMETRIC_SECURITY_KEY: c41b87fd-fd53-4f45-a2ac-1837fbde96d5
+      USER_CONNECTIONSTRING: server=userIdentityDatabase;database=myuserapi;user=my_database_username;password=my_database_password
+    ports:
+      - 8080:80
+
+volumes:
+  db_data:
+    driver: local
+
+networks:
+  identity-networks:
+    driver: bridge
+

@@ -8,10 +8,8 @@ namespace UserAPI.Services
 {
     public class TokenService
     {
-        private readonly IConfiguration _configuration;
-        public TokenService(IConfiguration configuration)
+        public TokenService()
         {
-            _configuration = configuration;
         }
 
         public string GenerateToken(User user)
@@ -24,7 +22,7 @@ namespace UserAPI.Services
                 new Claim("loginTimestamp", DateTime.UtcNow.ToString())
             };
 
-            var key = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(_configuration["SymmetricSecurityKey"]));
+            var key = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(Environment.GetEnvironmentVariable("SYMMETRIC_SECURITY_KEY")));
             var signingCredentials = new SigningCredentials(key, SecurityAlgorithms.HmacSha256);
 
             var token = new JwtSecurityToken

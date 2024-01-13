@@ -18,15 +18,15 @@ namespace UserAPI.Controllers
         [HttpPost("register")]
         public async Task<IActionResult> AddUserAsync(CreateUserDto dto)
         {
-            await _userService.AddAsync(dto);
-            return Ok("User was added with success.");
+            var result = await _userService.AddAsync(dto);
+            return result.Succeeded ? Ok() : BadRequest(result.Errors);
         }
 
         [HttpPost("login")]
         public async Task<IActionResult> LoginAsync(UserLoginDto dto)
         {
-            var token = await _userService.LoginAsync(dto);
-            return Ok(token);
+            var result = await _userService.LoginAsync(dto);
+            return result.Succeeded ? Ok(result.Content) : BadRequest(result.Errors);
         }
     }
 }

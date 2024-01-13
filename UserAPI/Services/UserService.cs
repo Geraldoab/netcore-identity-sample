@@ -1,5 +1,6 @@
 ﻿using AutoMapper;
 using Microsoft.AspNetCore.Identity;
+using UserAPI.Data;
 using UserAPI.Data.Dtos;
 using UserAPI.Models;
 
@@ -20,31 +21,33 @@ namespace UserAPI.Services
             _tokenService = tokenService;
         }
 
-        public async Task AddAsync(CreateUserDto dto)
+        public async Task<CustomResult> AddAsync(CreateUserDto dto)
         {
-             User user = _mapper.Map<User>(dto);
+            User user = _mapper.Map<User>(dto);
 
             var result = await _userManager.CreateAsync(user, dto.Password);
             
             if (!result.Succeeded)
             {
-                throw new ApplicationException("Error");
+                return new CustomResult(result.Succeeded, errors: result.Errors.Select(s => new { s.Code, s.Description }));
             }
+
+            return new CustomResult(result.Succeeded);
         }
 
-        public async Task<string> LoginAsync(UserLoginDto dto)
+        public async Task<CustomResult> LoginAsync(UserLoginDto dto)
         {
             var result = await _signInManager.PasswordSignInAsync(dto.UserName, dto.Password, false, false);
             if(!result.Succeeded)
             {
-                throw new ApplicationException("Cannot authenticate the user");
+                return new CustomResult(result.Succeeded, new List<string>() { "Cannot authenticate the user" });
             }
 
             var user = _signInManager.UserManager.Users.FirstOrDefault(user => user.NormalizedUserName == dto.UserName.ToUpper());
 
             var token = _tokenService.GenerateToken(user);
 
-            return token;
+            return new CustomResult(result.Succeeded, token);
         }
     }
 }
