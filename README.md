@@ -63,6 +63,12 @@ Routing key: userapi-routing-key
 ```http://localhost:15672/#/queues/%2F/userapi-email-service-queue```
 ![image](https://github.com/Geraldoab/netcore-identity-sample/assets/3846304/597545d2-864b-4f8d-affa-47d2f7fbb1e6)
 
+# Hosted Service - Message Consumer
+
+[EmailMessageSubscriber.cs](https://github.com/Geraldoab/netcore-identity-sample/blob/main/EmailMessageConsumer/EmailMessageSubscriber.cs)
+
+![image](https://github.com/Geraldoab/netcore-identity-sample/assets/3846304/c66c8f65-8f66-4f86-9493-920422ae2e8b)
+
 ## My DockerHub
 
 https://hub.docker.com/repositories/geraldoab
