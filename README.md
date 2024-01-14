@@ -26,6 +26,13 @@ Username: my_database_username
 Password: my_database_password
 Default Schema: myuserapi
 ```
+# Logging with ElasticSearch and Kibana
+![image](https://github.com/Geraldoab/netcore-identity-sample/assets/3846304/da7b1acb-8554-4cf6-9145-114c3e2cee7a)
+
+``` http://localhost:5601/app/home#/ ```
+
+![image](https://github.com/Geraldoab/netcore-identity-sample/assets/3846304/ff444ef2-d21b-4004-a27b-bbff8138850e)
+
 
 ## My DockerHub
 
