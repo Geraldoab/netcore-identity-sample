@@ -54,10 +54,12 @@ services:
       - identity-networks
     depends_on:
       - userIdentityDatabase
+      - identityElasticsearch
     environment:
       ASPNETCORE_ENVIRONMENT: Development
       SYMMETRIC_SECURITY_KEY: c41b87fd-fd53-4f45-a2ac-1837fbde96d5
       USER_CONNECTIONSTRING: server=userIdentityDatabase;database=myuserapi;user=my_database_username;password=my_database_password
+      ELASTIC_SEARCH: http://identityElasticsearch:9200
     ports:
       - 8080:80
 

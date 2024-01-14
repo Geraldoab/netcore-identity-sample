@@ -5,7 +5,7 @@ using UserAPI;
 
 var builder = WebApplication.CreateBuilder(args);
 
-ConfigureLogging();
+ConfigureLogging(Environment.GetEnvironmentVariable("ELASTIC_SEARCH"));
 builder.Host.UseSerilog();
 
 // Add services to the container.
@@ -20,7 +20,7 @@ startup.Configure(app, app.Environment);
 
 app.Run();
 
-void ConfigureLogging()
+void ConfigureLogging(string elasticSearchUrl)
 {
     var environment = Environment.GetEnvironmentVariable("ASPNETCORE_ENVIRONMENT");
     var configuration = new ConfigurationBuilder()
@@ -35,15 +35,15 @@ void ConfigureLogging()
         .Enrich.WithExceptionDetails()
         .WriteTo.Debug()
         .WriteTo.Console()
-        .WriteTo.Elasticsearch(ConfigureElasticSink(configuration, environment))
+        .WriteTo.Elasticsearch(ConfigureElasticSink(configuration, elasticSearchUrl))
         .Enrich.WithProperty("Environment", environment)
         .ReadFrom.Configuration(configuration)
         .CreateLogger();
 }
 
-ElasticsearchSinkOptions ConfigureElasticSink(IConfigurationRoot configuration, string environment)
+ElasticsearchSinkOptions ConfigureElasticSink(IConfigurationRoot configuration, string elasticSearchUrl)
 {
-    return new ElasticsearchSinkOptions(new Uri(configuration["ElasticConfiguration:Uri"]))
+    return new ElasticsearchSinkOptions(new Uri(elasticSearchUrl))
     {
         AutoRegisterTemplate = true,
         IndexFormat = $"userApi-{DateTime.UtcNow:yyyy-MM}"
