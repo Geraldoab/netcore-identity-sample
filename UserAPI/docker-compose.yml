@@ -47,19 +47,40 @@ services:
     networks:
       - identity-networks
 
+  identityMessageBroker:
+    image: rabbitmq:3.10-management
+    hostname: rabbitmq
+    volumes:
+      - "~/.docker-conf/rabbitmq/data/:/var/lib/rabbitmq/"
+      - "~/.docker-conf/rabbitmq/log/:/var/log/rabbitmq"
+    container_name: identityRabbitmq
+    environment:
+      - RABBITMQ_DEFAULT_USER=guest
+      - RABBITMQ_DEFAULT_PASS=guest
+    ports:
+      - 5672:5672
+      - 15672:15672
+    expose:
+     - 5672
+     - 15672
+    networks:
+      - identity-networks     
+
   identityApi:
-    image: geraldoab/netcore-identity-sample:1.1
+    image: geraldoab/netcore-identity-sample:1.2
     container_name: identityApi  
     networks:
       - identity-networks
     depends_on:
       - userIdentityDatabase
       - identityElasticsearch
+      - identityMessageBroker
     environment:
       ASPNETCORE_ENVIRONMENT: Development
       SYMMETRIC_SECURITY_KEY: c41b87fd-fd53-4f45-a2ac-1837fbde96d5
       USER_CONNECTIONSTRING: server=userIdentityDatabase;database=myuserapi;user=my_database_username;password=my_database_password
       ELASTIC_SEARCH: http://identityElasticsearch:9200
+      RABBIT_MQ_URL: rabbitmq
     ports:
       - 8080:80
 

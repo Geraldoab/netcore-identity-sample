@@ -7,9 +7,11 @@ using System.Text;
 using UserAPI.Authorization;
 using UserAPI.Authorization.Policies;
 using UserAPI.Data;
+using UserAPI.Domain.Interfaces;
 using UserAPI.Filters;
 using UserAPI.Models;
 using UserAPI.Services;
+using UserAPI.Services.Message;
 
 namespace UserAPI
 {
@@ -74,6 +76,7 @@ namespace UserAPI
 
             services.AddScoped<UserService>();
             services.AddScoped<TokenService>();
+            services.AddScoped<IEmailMessengerService, EmailMessengerService>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

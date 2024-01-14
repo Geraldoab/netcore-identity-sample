@@ -2,6 +2,7 @@
 using Microsoft.AspNetCore.Identity;
 using UserAPI.Data;
 using UserAPI.Data.Dtos;
+using UserAPI.Domain.Interfaces;
 using UserAPI.Models;
 
 namespace UserAPI.Services
@@ -13,15 +14,17 @@ namespace UserAPI.Services
         private readonly SignInManager<User> _signInManager;
         private readonly TokenService _tokenService;
         private readonly ILogger<UserService> _logger;
+        private readonly IEmailMessengerService _emailService;
 
-        public UserService(IMapper mapper, UserManager<User> userManager, SignInManager<User> signInManager, 
-            TokenService tokenService, ILogger<UserService> logger)
+        public UserService(IMapper mapper, UserManager<User> userManager, SignInManager<User> signInManager,
+            TokenService tokenService, ILogger<UserService> logger, IEmailMessengerService emailService)
         {
             this._mapper = mapper;
             _userManager = userManager;
             _signInManager = signInManager;
             _tokenService = tokenService;
             _logger = logger;
+            _emailService = emailService;
         }
 
         public async Task<CustomResult> AddAsync(CreateUserDto dto)
@@ -36,6 +39,14 @@ namespace UserAPI.Services
             }
 
             _logger.LogInformation($"New user created: {dto.UserName}");
+
+            _emailService.SendMessage(new Email()
+            {
+                From = dto.Email,
+                To = "another@gmail.com",
+                Subject = "Messenger Broker e-mail test",
+                Body = "Your credentials were created successfully!"
+            });
 
             return new CustomResult(result.Succeeded);
         }

@@ -19,7 +19,8 @@
         "ASPNETCORE_ENVIRONMENT": "Development",
         "SYMMETRIC_SECURITY_KEY": "c41b87fd-fd53-4f45-a2ac-1837fbde96d5",
         "USER_CONNECTIONSTRING": "server=127.0.0.1;Port=7000;database=myuserapi;user=my_database_username;password=my_database_password",
-        "ELASTIC_SEARCH": "http://identityElasticsearch:9200"
+        "ELASTIC_SEARCH": "http://identityElasticsearch:9200",
+        "RABBIT_MQ_URL": "localhost"
       }
     },
     "IIS Express": {
