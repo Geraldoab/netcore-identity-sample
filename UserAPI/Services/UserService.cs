@@ -12,13 +12,16 @@ namespace UserAPI.Services
         private readonly UserManager<User> _userManager;
         private readonly SignInManager<User> _signInManager;
         private readonly TokenService _tokenService;
+        private readonly ILogger<UserService> _logger;
 
-        public UserService(IMapper mapper, UserManager<User> userManager, SignInManager<User> signInManager, TokenService tokenService)
+        public UserService(IMapper mapper, UserManager<User> userManager, SignInManager<User> signInManager, 
+            TokenService tokenService, ILogger<UserService> logger)
         {
             this._mapper = mapper;
             _userManager = userManager;
             _signInManager = signInManager;
             _tokenService = tokenService;
+            _logger = logger;
         }
 
         public async Task<CustomResult> AddAsync(CreateUserDto dto)
@@ -31,6 +34,8 @@ namespace UserAPI.Services
             {
                 return new CustomResult(result.Succeeded, errors: result.Errors.Select(s => new { s.Code, s.Description }));
             }
+
+            _logger.LogInformation($"New user created: {dto.UserName}");
 
             return new CustomResult(result.Succeeded);
         }

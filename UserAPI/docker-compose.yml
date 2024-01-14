@@ -1,13 +1,14 @@
 version: '3.5'
 services:
-  elasticsearch:
-    container_name: IdentityElasticsearch
+  identityElasticsearch:
+    container_name: identityElasticsearch
     image: docker.elastic.co/elasticsearch/elasticsearch:7.16.1
     ports:
       - 9200:9200
     volumes:
       - elasticsearch-data:/usr/share/elasticsearch/data
     environment:
+      - node.name=identityElasticsearch
       - xpack.monitoring.enabled=true
       - xpack.watcher.enabled=false
       - "ES_JAVA_OPTS=-Xms512m -Xmx512m"
@@ -15,15 +16,16 @@ services:
     networks:
       - identity-networks
 
-  kibana:
-    container_name: kibana
+  identityKibana:
+    container_name: identityKibana
     image: docker.elastic.co/kibana/kibana:7.16.1
     ports:
       - 5601:5601
     depends_on:
-      - elasticsearch
+      - identityElasticsearch
     environment:
-      - ELASTICSEARCH_URL=http://localhost:9200
+      ELASTICSEARCH_URL: http://identityElasticsearch:9200
+      ELASTICSEARCH_HOSTS: '["http://identityElasticsearch:9200"]'
     networks:
       - identity-networks
 
@@ -46,7 +48,7 @@ services:
       - identity-networks
 
   identityApi:
-    image: geraldoab/netcore-identity-sample:1.0
+    image: geraldoab/netcore-identity-sample:1.1
     container_name: identityApi  
     networks:
       - identity-networks
@@ -62,9 +64,11 @@ services:
 volumes:
   db_data:
     driver: local
-  elasticsearch-data:  
+  elasticsearch-data:
+    driver: local  
 
 networks:
   identity-networks:
     driver: bridge
-
+    driver_opts:
+      com.docker.network.bridge.enable_icc: "true"
