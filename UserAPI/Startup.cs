@@ -7,6 +7,7 @@ using System.Text;
 using UserAPI.Authorization;
 using UserAPI.Authorization.Policies;
 using UserAPI.Data;
+using UserAPI.Filters;
 using UserAPI.Models;
 using UserAPI.Services;
 
@@ -23,6 +24,11 @@ namespace UserAPI
         // This method gets called by the runtime. Use this method to add serices to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+            services.AddControllers(options =>
+            {
+                options.Filters.Add(typeof(ExceptionFilter));
+            });
+
             var userConnectionString = Environment.GetEnvironmentVariable("USER_CONNECTIONSTRING");
 
             services.AddDbContext<UserDbContext>(opts =>

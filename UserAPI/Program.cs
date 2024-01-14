@@ -1,6 +1,11 @@
+using Serilog;
 using UserAPI;
+using UserAPI.Log;
 
 var builder = WebApplication.CreateBuilder(args);
+
+SerilogHelper.ConfigureLogging(Log.Logger);
+builder.Host.UseSerilog();
 
 // Add services to the container.
 
