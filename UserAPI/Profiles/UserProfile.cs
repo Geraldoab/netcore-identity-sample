@@ -1,6 +1,6 @@
 ﻿using AutoMapper;
-using UserAPI.Data.Dtos;
-using UserAPI.Models;
+using Domain.Dtos;
+using Domain.Models;
 
 namespace UserAPI.Profiles
 {

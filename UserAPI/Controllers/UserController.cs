@@ -1,6 +1,6 @@
-﻿using Microsoft.AspNetCore.Mvc;
-using UserAPI.Data.Dtos;
-using UserAPI.Services;
+﻿using Domain.Dtos;
+using Microsoft.AspNetCore.Mvc;
+using UserAPI.Application.Services;
 
 namespace UserAPI.Controllers
 {

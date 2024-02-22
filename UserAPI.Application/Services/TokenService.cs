@@ -1,10 +1,10 @@
-﻿using Microsoft.IdentityModel.Tokens;
+﻿using Domain.Models;
+using Microsoft.IdentityModel.Tokens;
 using System.IdentityModel.Tokens.Jwt;
 using System.Security.Claims;
 using System.Text;
-using UserAPI.Models;
 
-namespace UserAPI.Services
+namespace UserAPI.Application.Services
 {
     public class TokenService
     {

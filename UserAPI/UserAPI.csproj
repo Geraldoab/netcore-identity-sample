@@ -30,6 +30,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\UserAPI.Application\UserAPI.Application.csproj" />
     <ProjectReference Include="..\UserAPI.Domain\UserAPI.Domain.csproj" />
   </ItemGroup>
 

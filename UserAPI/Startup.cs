@@ -1,17 +1,17 @@
-﻿using Microsoft.AspNetCore.Authentication.JwtBearer;
+﻿using Domain.Interfaces;
+using Domain.Models;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.IdentityModel.Tokens;
 using System.Text;
+using UserAPI.Application.Services;
+using UserAPI.Application.Services.Message;
 using UserAPI.Authorization;
 using UserAPI.Authorization.Policies;
 using UserAPI.Data;
-using UserAPI.Domain.Interfaces;
 using UserAPI.Filters;
-using UserAPI.Models;
-using UserAPI.Services;
-using UserAPI.Services.Message;
 
 namespace UserAPI
 {
