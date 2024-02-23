@@ -1,10 +1,11 @@
-﻿using RabbitMQ.Client;
+﻿using Domain.Interfaces;
+using Domain.Models;
+using Microsoft.Extensions.Logging;
+using RabbitMQ.Client;
 using System.Text;
 using System.Text.Json;
-using UserAPI.Domain.Interfaces;
-using UserAPI.Models;
 
-namespace UserAPI.Services.Message
+namespace UserAPI.Application.Services.Message
 {
     public class EmailMessengerService : IEmailMessengerService
     {

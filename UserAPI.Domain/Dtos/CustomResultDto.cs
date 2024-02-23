@@ -1,10 +1,10 @@
 ﻿using System.Text.Json.Serialization;
 
-namespace UserAPI.Data
+namespace Domain.Dtos
 {
-    public class CustomResult
+    public class CustomResultDto
     {
-        public CustomResult(bool succeeded, object? content = null, object? errors = null)
+        public CustomResultDto(bool succeeded, object? content = null, object? errors = null)
         {
             Errors = errors;
             Succeeded = succeeded;

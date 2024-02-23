@@ -1,6 +1,6 @@
-﻿using UserAPI.Models;
+﻿using Domain.Models;
 
-namespace UserAPI.Domain.Interfaces
+namespace Domain.Interfaces
 {
     public interface IEmailMessengerService
     {

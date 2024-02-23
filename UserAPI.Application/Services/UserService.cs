@@ -1,11 +1,11 @@
 ﻿using AutoMapper;
+using Domain.Dtos;
+using Domain.Interfaces;
+using Domain.Models;
 using Microsoft.AspNetCore.Identity;
-using UserAPI.Data;
-using UserAPI.Data.Dtos;
-using UserAPI.Domain.Interfaces;
-using UserAPI.Models;
+using Microsoft.Extensions.Logging;
 
-namespace UserAPI.Services
+namespace UserAPI.Application.Services
 {
     public class UserService
     {
@@ -27,7 +27,7 @@ namespace UserAPI.Services
             _emailService = emailService;
         }
 
-        public async Task<CustomResult> AddAsync(CreateUserDto dto)
+        public async Task<CustomResultDto> AddAsync(CreateUserDto dto)
         {
             User user = _mapper.Map<User>(dto);
 
@@ -35,7 +35,7 @@ namespace UserAPI.Services
             
             if (!result.Succeeded)
             {
-                return new CustomResult(result.Succeeded, errors: result.Errors.Select(s => new { s.Code, s.Description }));
+                return new CustomResultDto(result.Succeeded, errors: result.Errors.Select(s => new { s.Code, s.Description }));
             }
 
             _logger.LogInformation($"New user created: {dto.UserName}");
@@ -48,22 +48,22 @@ namespace UserAPI.Services
                 Body = "Your credentials were created successfully!"
             });
 
-            return new CustomResult(result.Succeeded);
+            return new CustomResultDto(result.Succeeded);
         }
 
-        public async Task<CustomResult> LoginAsync(UserLoginDto dto)
+        public async Task<CustomResultDto> LoginAsync(UserLoginDto dto)
         {
             var result = await _signInManager.PasswordSignInAsync(dto.UserName, dto.Password, false, false);
             if(!result.Succeeded)
             {
-                return new CustomResult(result.Succeeded, new List<string>() { "Cannot authenticate the user" });
+                return new CustomResultDto(result.Succeeded, new List<string>() { "Cannot authenticate the user" });
             }
 
             var user = _signInManager.UserManager.Users.FirstOrDefault(user => user.NormalizedUserName == dto.UserName.ToUpper());
 
             var token = _tokenService.GenerateToken(user);
 
-            return new CustomResult(result.Succeeded, token);
+            return new CustomResultDto(result.Succeeded, token);
         }
     }
 }

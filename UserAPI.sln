@@ -5,7 +5,11 @@ VisualStudioVersion = 17.7.34031.279
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "UserAPI", "UserAPI\UserAPI.csproj", "{1B6C43AB-393E-49DE-BC00-C4775446C277}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EmailMessageConsumer", "EmailMessageConsumer\EmailMessageConsumer.csproj", "{3AAD3E28-EE0E-4763-83D8-BE7095298A78}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "EmailMessageConsumer", "EmailMessageConsumer\EmailMessageConsumer.csproj", "{3AAD3E28-EE0E-4763-83D8-BE7095298A78}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UserAPI.Domain", "UserAPI.Domain\UserAPI.Domain.csproj", "{C61C15B6-29DE-4F10-9B67-A64D511E5CD5}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UserAPI.Application", "UserAPI.Application\UserAPI.Application.csproj", "{C702965E-2BE9-4E8B-A8D0-C51F11FB0E90}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -21,6 +25,14 @@ Global
 		{3AAD3E28-EE0E-4763-83D8-BE7095298A78}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{3AAD3E28-EE0E-4763-83D8-BE7095298A78}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{3AAD3E28-EE0E-4763-83D8-BE7095298A78}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C61C15B6-29DE-4F10-9B67-A64D511E5CD5}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C61C15B6-29DE-4F10-9B67-A64D511E5CD5}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C61C15B6-29DE-4F10-9B67-A64D511E5CD5}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C61C15B6-29DE-4F10-9B67-A64D511E5CD5}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C702965E-2BE9-4E8B-A8D0-C51F11FB0E90}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C702965E-2BE9-4E8B-A8D0-C51F11FB0E90}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C702965E-2BE9-4E8B-A8D0-C51F11FB0E90}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C702965E-2BE9-4E8B-A8D0-C51F11FB0E90}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
