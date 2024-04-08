@@ -14,6 +14,8 @@ var startup = new Startup(builder.Configuration); // My custom startup class.
 
 startup.ConfigureServices(builder.Services); // Add services to the container.
 
+builder.Services.RegisterApplicationDependencies();
+
 var app = builder.Build();
 
 startup.Configure(app, app.Environment);
