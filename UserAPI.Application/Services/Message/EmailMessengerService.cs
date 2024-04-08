@@ -1,9 +1,9 @@
-﻿using Domain.Interfaces;
-using Domain.Models;
+﻿using Domain.Models;
 using Microsoft.Extensions.Logging;
 using RabbitMQ.Client;
 using System.Text;
 using System.Text.Json;
+using UserAPI.Domain.Interfaces.Services;
 
 namespace UserAPI.Application.Services.Message
 {

@@ -1,13 +1,13 @@
 ﻿using AutoMapper;
 using Domain.Dtos;
-using Domain.Interfaces;
 using Domain.Models;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.Extensions.Logging;
+using UserAPI.Domain.Interfaces.Services;
 
 namespace UserAPI.Application.Services
 {
-    public class UserService
+    public class UserService : IUserService
     {
         private readonly IMapper _mapper;
         private readonly UserManager<User> _userManager;
@@ -19,7 +19,7 @@ namespace UserAPI.Application.Services
         public UserService(IMapper mapper, UserManager<User> userManager, SignInManager<User> signInManager,
             TokenService tokenService, ILogger<UserService> logger, IEmailMessengerService emailService)
         {
-            this._mapper = mapper;
+            _mapper = mapper;
             _userManager = userManager;
             _signInManager = signInManager;
             _tokenService = tokenService;

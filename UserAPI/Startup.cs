@@ -1,5 +1,4 @@
-﻿using Domain.Interfaces;
-using Domain.Models;
+﻿using Domain.Models;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
@@ -11,6 +10,7 @@ using UserAPI.Application.Services.Message;
 using UserAPI.Authorization;
 using UserAPI.Authorization.Policies;
 using UserAPI.Data;
+using UserAPI.Domain.Interfaces.Services;
 using UserAPI.Filters;
 
 namespace UserAPI
