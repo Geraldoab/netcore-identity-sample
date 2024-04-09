@@ -1,4 +1,5 @@
 ﻿using UserAPI.Application.Services;
+using UserAPI.Application.Services.Message;
 using UserAPI.Domain.Interfaces.Services;
 
 namespace Microsoft.Extensions.DependencyInjection
@@ -7,9 +8,10 @@ namespace Microsoft.Extensions.DependencyInjection
     {
         public static IServiceCollection RegisterApplicationDependencies(this IServiceCollection services)
         {
-            services.AddScoped<IUserService, UserService>();
+            services.AddScoped<IEmailMessengerService, EmailMessengerService>();
             services.AddScoped<ITokenService, TokenService>();
-
+            services.AddScoped<IUserService, UserService>();
+            
             return services;
         }
     }

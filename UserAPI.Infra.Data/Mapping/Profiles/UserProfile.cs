@@ -2,7 +2,7 @@
 using Domain.Dtos;
 using Domain.Models;
 
-namespace UserAPI.Profiles
+namespace UserAPI.Infra.Data.Mapping.Profiles
 {
     public class UserProfile: Profile
     {

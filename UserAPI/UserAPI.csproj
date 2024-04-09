@@ -32,6 +32,7 @@
   <ItemGroup>
     <ProjectReference Include="..\UserAPI.Application\UserAPI.Application.csproj" />
     <ProjectReference Include="..\UserAPI.Domain\UserAPI.Domain.csproj" />
+    <ProjectReference Include="..\UserAPI.Infra.Data\UserAPI.Infra.Data.csproj" />
   </ItemGroup>
 
 </Project>

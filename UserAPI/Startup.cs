@@ -5,13 +5,10 @@ using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.IdentityModel.Tokens;
 using System.Text;
-using UserAPI.Application.Services;
-using UserAPI.Application.Services.Message;
 using UserAPI.Authorization;
 using UserAPI.Authorization.Policies;
-using UserAPI.Data;
-using UserAPI.Domain.Interfaces.Services;
 using UserAPI.Filters;
+using UserAPI.Infra.Data.Context;
 
 namespace UserAPI
 {
@@ -31,13 +28,8 @@ namespace UserAPI
                 options.Filters.Add(typeof(ExceptionFilter));
             });
 
-            var userConnectionString = Environment.GetEnvironmentVariable("USER_CONNECTIONSTRING");
-
-            services.AddDbContext<UserDbContext>(opts =>
-            {
-                opts.UseMySql(userConnectionString,
-                    ServerVersion.AutoDetect(userConnectionString));
-            });
+            services.RegisterDataDependencies();
+            services.RegisterApplicationDependencies();
 
             services.AddIdentity<User, IdentityRole>()
                 .AddEntityFrameworkStores<UserDbContext>()
@@ -73,10 +65,6 @@ namespace UserAPI
                     policy.AddRequirements(new MinimumAge(18));
                 });
             });
-
-            services.AddScoped<UserService>();
-            services.AddScoped<TokenService>();
-            services.AddScoped<IEmailMessengerService, EmailMessengerService>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

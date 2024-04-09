@@ -7,9 +7,11 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "UserAPI", "UserAPI\UserAPI.
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "EmailMessageConsumer", "EmailMessageConsumer\EmailMessageConsumer.csproj", "{3AAD3E28-EE0E-4763-83D8-BE7095298A78}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UserAPI.Domain", "UserAPI.Domain\UserAPI.Domain.csproj", "{C61C15B6-29DE-4F10-9B67-A64D511E5CD5}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "UserAPI.Domain", "UserAPI.Domain\UserAPI.Domain.csproj", "{C61C15B6-29DE-4F10-9B67-A64D511E5CD5}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UserAPI.Application", "UserAPI.Application\UserAPI.Application.csproj", "{C702965E-2BE9-4E8B-A8D0-C51F11FB0E90}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "UserAPI.Application", "UserAPI.Application\UserAPI.Application.csproj", "{C702965E-2BE9-4E8B-A8D0-C51F11FB0E90}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UserAPI.Infra.Data", "UserAPI.Infra.Data\UserAPI.Infra.Data.csproj", "{F5076BAC-A0D0-4170-89F8-0850C2FC38F4}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -33,6 +35,10 @@ Global
 		{C702965E-2BE9-4E8B-A8D0-C51F11FB0E90}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{C702965E-2BE9-4E8B-A8D0-C51F11FB0E90}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{C702965E-2BE9-4E8B-A8D0-C51F11FB0E90}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F5076BAC-A0D0-4170-89F8-0850C2FC38F4}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F5076BAC-A0D0-4170-89F8-0850C2FC38F4}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F5076BAC-A0D0-4170-89F8-0850C2FC38F4}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F5076BAC-A0D0-4170-89F8-0850C2FC38F4}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
