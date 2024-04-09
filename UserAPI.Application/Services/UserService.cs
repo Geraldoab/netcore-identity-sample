@@ -12,12 +12,12 @@ namespace UserAPI.Application.Services
         private readonly IMapper _mapper;
         private readonly UserManager<User> _userManager;
         private readonly SignInManager<User> _signInManager;
-        private readonly TokenService _tokenService;
+        private readonly ITokenService _tokenService;
         private readonly ILogger<UserService> _logger;
         private readonly IEmailMessengerService _emailService;
 
         public UserService(IMapper mapper, UserManager<User> userManager, SignInManager<User> signInManager,
-            TokenService tokenService, ILogger<UserService> logger, IEmailMessengerService emailService)
+            ITokenService tokenService, ILogger<UserService> logger, IEmailMessengerService emailService)
         {
             _mapper = mapper;
             _userManager = userManager;
